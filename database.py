@@ -1,7 +1,7 @@
 import sqlite3
 from passlib.context import CryptContext
 
-DB_NAME = "onizpay.db"
+DB_NAME = "oinzpay.db"
 
 # Password hashing setup
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
