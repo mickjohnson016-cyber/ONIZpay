@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - OinzPay</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const isAuthenticated = sessionStorage.getItem("isAuthenticated");
+            if (isAuthenticated !== "true") {
+                window.location.href = "login.html";
+            }
+        });
+    </script>
+    <style>
+        .contact-container {
+            max-width: 800px;
+            margin: 100px auto;
+            padding: 40px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            font-family: 'Syne', sans-serif;
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: #666;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="contact-container">
+        <h1>Contact Us</h1>
+        <p>Welcome back! You can reach our support team at support@oinzpay.com or call us at +234 800 OINZPAY.</p>
+        <p>Our office is located at Oinz Group HQ, Lagos, Nigeria.</p>
+        <br>
+        <a href="index.html" class="btn btn-blue">Back to Home</a>
+    </div>
+</body>
+
+</html>

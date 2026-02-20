@@ -14,14 +14,16 @@ const api = {
         return await response.json();
     },
 
-    async loginUser(username, password) {
-        const formData = new FormData();
-        formData.append('username', username);
-        formData.append('password', password);
-
-        const response = await fetch(`${API_BASE_URL}/auth/login`, {
-            method: 'POST',
-            body: formData
+    async loginUser(email, password) {
+        const response = await fetch("http://127.0.0.1:8000/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                email,
+                password
+            })
         });
 
         if (!response.ok) {
@@ -30,7 +32,15 @@ const api = {
         }
 
         const data = await response.json();
-        localStorage.setItem('oinzpay_token', data.access_token);
+        // For temporary validation, if there's no token we still return success if the message is there
+        if (data.message === "Login successful") {
+            // Note: In a real app we'd get a token here. For now we just return.
+            return data;
+        }
+
+        if (data.access_token) {
+            localStorage.setItem('oinzpay_token', data.access_token);
+        }
         return data;
     },
 

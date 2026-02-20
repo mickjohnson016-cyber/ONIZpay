@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - OinzPay</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .legal-container {
+            max-width: 800px;
+            margin: 60px auto;
+            padding: 40px;
+            background: #fff;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        h1 {
+            font-family: 'Syne', sans-serif;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            margin-top: 30px;
+            font-size: 1.4rem;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        .preview-text {
+            border-left: 4px solid var(--blue);
+            padding-left: 15px;
+            margin-bottom: 25px;
+            font-style: italic;
+            color: #555;
+        }
+
+        .expand-btn {
+            background: #f1f5f9;
+            border: 1px solid #e2e8f0;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--blue);
+            transition: all 0.2s;
+        }
+
+        .expand-btn:hover {
+            background: var(--blue);
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="legal-container">
+        <h1>Privacy Policy</h1>
+        <p>Last updated: February 20, 2026</p>
+
+        <div class="preview-text">
+            <p>Your privacy is important to us. This policy explains how we collect, use, and protect your personal
+                information.</p>
+        </div>
+
+        <button class="expand-btn" id="expandPrivacy">Read Full Privacy Policy</button>
+
+        <div class="expandable-content" id="privacyContent" style="display: none; margin-top: 20px;">
+            <h2>1. Data Collection</h2>
+            <p>We collect user data strictly for authentication, security, and service delivery purposes. This includes
+                your name, email address, phone number, and transaction history.</p>
+
+            <h2>2. Use of Information</h2>
+            <p>The information we collect is used to facilitate secure property transactions, verify identity, prevent
+                fraud, and improve our services.</p>
+
+            <h2>3. Data Security</h2>
+            <p>We implement bank-grade security measures to protect your personal and financial information. This
+                includes encryption, secure servers, and regular security audits.</p>
+
+            <h2>4. Information Sharing</h2>
+            <p>We do not sell your personal information to third parties. We may share data with trusted partners only
+                as necessary to fulfill service requests.</p>
+        </div>
+
+        <script>
+            document.getElementById('expandPrivacy').addEventListener('click', function () {
+                const content = document.getElementById('privacyContent');
+                if (content.style.display === 'none') {
+                    content.style.display = 'block';
+                    this.textContent = 'Hide Full Policy';
+                } else {
+                    content.style.display = 'none';
+                    this.textContent = 'Read Full Privacy Policy';
+                }
+            });
+        </script>
+
+        <br><br>
+        <a href="index.html" class="btn btn-blue">Back to Home</a>
+    </div>
+</body>
+
+</html>

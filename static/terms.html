@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service - OinzPay</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .legal-container {
+            max-width: 800px;
+            margin: 60px auto;
+            padding: 40px;
+            background: #fff;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        h1 {
+            font-family: 'Syne', sans-serif;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            margin-top: 30px;
+            font-size: 1.4rem;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        .preview-text {
+            border-left: 4px solid var(--blue);
+            padding-left: 15px;
+            margin-bottom: 25px;
+            font-style: italic;
+            color: #555;
+        }
+
+        .expand-btn {
+            background: #f1f5f9;
+            border: 1px solid #e2e8f0;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--blue);
+            transition: all 0.2s;
+        }
+
+        .expand-btn:hover {
+            background: var(--blue);
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="legal-container">
+        <h1>Terms of Service</h1>
+        <p>Last updated: February 20, 2026</p>
+
+        <div class="preview-text">
+            <p>Welcome to OinzPay. These terms govern your use of our platform. By using OinzPay, you agree to these
+                conditions in full.</p>
+        </div>
+
+        <button class="expand-btn" id="expandTerms">Read Full Terms & Service Details</button>
+
+        <div class="expandable-content" id="termsContent" style="display: none; margin-top: 20px;">
+            <h2>1. Acceptance of Terms</h2>
+            <p>Use of OinzPay is subject to compliance with all applicable laws and platform policies. By accessing or
+                using
+                our services, you agree to be bound by these Terms of Service.</p>
+
+            <h2>2. Service Description</h2>
+            <p>OinzPay provides a payment infrastructure specifically designed for real estate transactions, including
+                escrow services and milestone-based fund releases.</p>
+
+            <h2>3. User Responsibilities</h2>
+            <p>Users are responsible for maintaining the confidentiality of their account credentials and for all
+                activities
+                that occur under their account. You must provide accurate and complete information during registration.
+            </p>
+
+            <h2>4. Transactions and Escrow</h2>
+            <p>Payments made through OinzPay are held in secure escrow accounts. Funds are only released upon
+                verification
+                of agreed-upon milestones by the relevant parties.</p>
+
+            <h2>5. Limitation of Liability</h2>
+            <p>OinzPay shall not be liable for any indirect, incidental, special, or consequential damages arising out
+                of or
+                in connection with the use of our services.</p>
+        </div>
+
+        <script>
+            document.getElementById('expandTerms').addEventListener('click', function () {
+                const content = document.getElementById('termsContent');
+                if (content.style.display === 'none') {
+                    content.style.display = 'block';
+                    this.textContent = 'Hide Full Terms';
+                } else {
+                    content.style.display = 'none';
+                    this.textContent = 'Read Full Terms & Service Details';
+                }
+            });
+        </script>
+
+        <br><br>
+        <a href="index.html" class="btn btn-blue">Back to Home</a>
+    </div>
+</body>
+
+</html>
