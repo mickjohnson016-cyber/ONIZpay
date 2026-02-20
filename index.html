@@ -30,8 +30,9 @@
                 <li><a href="#trust">Security</a></li>
                 <li><a href="#video">Overview</a></li>
             </ul>
-            <div class="nav-cta">
+            <div class="nav-cta" id="navCta">
                 <a href="demo.html" class="btn btn-white">Watch Demo</a>
+                <a href="login.html" class="btn btn-signin" id="loginHeaderBtn">Sign In</a>
             </div>
         </div>
     </nav>
@@ -60,10 +61,10 @@
                     </div>
                     <button class="read-more-toggle" id="readMoreToggle">Read More</button>
                 </div>
-                <div class="hero-actions">
+                <div class="hero-actions" id="heroActions">
                     <a href="https://play.google.com/store/apps/details?id=com.oinzpay.ng" target="_blank"
                         rel="noopener noreferrer" class="btn btn-white">Download App</a>
-                    <a href="login.html" class="btn btn-signin">Sign In</a>
+                    <a href="login.html" class="btn btn-signin" id="heroSignInBtn">Sign In</a>
                 </div>
             </div>
 
@@ -485,7 +486,35 @@
         </div>
     </footer>
 
+    <script src="js/api.js"></script>
     <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const token = window.OinzPayAPI.getToken();
+            const navCta = document.getElementById('navCta');
+            const heroActions = document.getElementById('heroActions');
+
+            if (token) {
+                // Update Navbar
+                const loginHeaderBtn = document.getElementById('loginHeaderBtn');
+                if (loginHeaderBtn) {
+                    loginHeaderBtn.textContent = 'Sign Out';
+                    loginHeaderBtn.href = '#';
+                    loginHeaderBtn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        window.OinzPayAPI.logout();
+                    });
+                }
+
+                // Update Hero Actions
+                const heroSignInBtn = document.getElementById('heroSignInBtn');
+                if (heroSignInBtn) {
+                    heroSignInBtn.textContent = 'Go to Dashboard';
+                    heroSignInBtn.href = '#'; // Define dashboard page if created
+                }
+            }
+        });
+    </script>
 </body>
 
 </html>

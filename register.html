@@ -213,7 +213,35 @@
             </div>
         </div>
     </div>
+    <script src="js/api.js"></script>
     <script>
+        const registerForm = document.getElementById('registerForm');
+        const registerBtn = registerForm.querySelector('button[type="submit"]');
+
+        registerForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const fullName = registerForm.querySelectorAll('input')[0].value;
+            const email = registerForm.querySelectorAll('input')[1].value;
+            const password = document.getElementById('passwordInput').value;
+
+            registerBtn.disabled = true;
+            registerBtn.textContent = 'Creating account...';
+
+            try {
+                await window.OinzPayAPI.registerUser({
+                    full_name: fullName,
+                    email: email,
+                    password: password
+                });
+                alert('Account created! Please sign in.');
+                window.location.href = 'login.html';
+            } catch (err) {
+                alert(err.message);
+                registerBtn.disabled = false;
+                registerBtn.textContent = 'Create Account';
+            }
+        });
+
         const togglePassword = document.querySelector('#togglePassword');
         const passwordInput = document.querySelector('#passwordInput');
         const eyeIcon = document.querySelector('#eyeIcon');

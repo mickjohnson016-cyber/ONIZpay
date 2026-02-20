@@ -280,7 +280,29 @@
             </div>
         </div>
     </div>
+    <script src="js/api.js"></script>
     <script>
+        const loginForm = document.getElementById('loginForm');
+        const loginBtn = loginForm.querySelector('button[type="submit"]');
+
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = loginForm.querySelector('input[type="text"]').value;
+            const password = document.getElementById('passwordInput').value;
+
+            loginBtn.disabled = true;
+            loginBtn.textContent = 'Signing in...';
+
+            try {
+                await window.OinzPayAPI.loginUser(email, password);
+                window.location.href = 'index.html'; // Or dashboard if available
+            } catch (err) {
+                alert(err.message);
+                loginBtn.disabled = false;
+                loginBtn.textContent = 'Sign In';
+            }
+        });
+
         const togglePassword = document.querySelector('#togglePassword');
         const passwordInput = document.querySelector('#passwordInput');
         const eyeIcon = document.querySelector('#eyeIcon');
