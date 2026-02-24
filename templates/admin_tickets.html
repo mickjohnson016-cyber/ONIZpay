@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard — Support Tickets</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <style>
+        .admin-container {
+            max-width: 1200px;
+            margin: 100px auto;
+            padding: 20px;
+        }
+
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .ticket-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .ticket-table th,
+        .ticket-table td {
+            padding: 15px 20px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        .ticket-table th {
+            background: var(--blue-dark);
+            color: white;
+            font-weight: 600;
+        }
+
+        .status-badge {
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .status-open {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+
+        .date-cell {
+            font-family: monospace;
+            opacity: 0.7;
+            font-size: 13px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="/" class="nav-brand">
+                <img src="/static/assets/image.png" alt="OinzPay Logo">
+                <span class="nav-brand-text">OinzAdmin</span>
+            </a>
+            <div class="nav-cta">
+                <a href="/logout" class="btn btn-signin">Sign Out</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="admin-container">
+        <div class="admin-header">
+            <h1>Support Tickets</h1>
+            <p>Logged in as: <strong>{{ user.name }} ({{ user.role }})</strong></p>
+        </div>
+
+        <table class="ticket-table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Ticket ID</th>
+                    <th>User</th>
+                    <th>Subject</th>
+                    <th>Message</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for ticket in tickets %}
+                <tr>
+                    <td class="date-cell">{{ ticket.created_at }}</td>
+                    <td><strong>{{ ticket.ticket_id }}</strong></td>
+                    <td>
+                        {{ ticket.full_name }}<br>
+                        <small style="opacity: 0.6">{{ ticket.email }}</small>
+                    </td>
+                    <td>{{ ticket.subject }}</td>
+                    <td style="max-width: 300px; font-size: 13px;">{{ ticket.message }}</td>
+                    <td><span class="status-badge status-{{ ticket.status|lower }}">{{ ticket.status }}</span></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Syne:wght@700;800&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/static/css/style.css">
 </head>
 
 <body>
@@ -20,19 +20,28 @@
     <!-- ═══════ NAVBAR ═══════ -->
     <nav class="navbar" id="navbar">
         <div class="container">
-            <a href="#hero" class="nav-brand">
-                <img src="assets/image.png" alt="OinzPay Logo">
+            <a href="/#hero" class="nav-brand">
+                <img src="/static/assets/image.png" alt="OinzPay Logo">
                 <span class="nav-brand-text">Oinz<span class="nav-brand-accent">Pay</span></span>
             </a>
             <ul class="nav-links">
-                <li><a href="#hero">Home</a></li>
-                <li><a href="#preview">Features</a></li>
-                <li><a href="#trust">Security</a></li>
-                <li><a href="#video">Overview</a></li>
+                <li><a href="/#hero">Home</a></li>
+                <li><a href="/#preview">Features</a></li>
+                <li><a href="/#trust">Security</a></li>
+                <li><a href="/#overview">Overview</a></li>
             </ul>
             <div class="nav-cta" id="navCta">
-                <a href="demo.html" class="btn btn-white">Watch Demo</a>
-                <a href="login.html" class="btn btn-signin sign-in-btn" id="loginHeaderBtn">Sign In</a>
+                {% if user %}
+                {% if user.role == "admin" %}
+                <a href="/admin/tickets" class="btn btn-signin"
+                    style="background: var(--blue-dark); color: white;">Admin</a>
+                {% endif %}
+                <a href="/logout" class="btn btn-white">Sign Out</a>
+                <a href="/contact.html" class="btn btn-signin sign-in-btn">Contact Us</a>
+                {% else %}
+                <a href="/demo.html" class="btn btn-white">Watch Demo</a>
+                <a href="/login.html" class="btn btn-signin sign-in-btn" id="loginHeaderBtn">Sign In</a>
+                {% endif %}
             </div>
         </div>
     </nav>
@@ -40,11 +49,11 @@
     <!-- ═════════════════════════════════
        SECTION 1 — HERO
        ═════════════════════════════════ -->
-    <section class="hero" id="hero">
+    <section class="hero fade-in" id="hero">
         <!-- Subtle video background -->
         <div class="hero-video-bg">
             <video autoplay muted loop playsinline preload="auto">
-                <source src="assets/oniz.mp4" type="video/mp4">
+                <source src="/static/assets/oniz.mp4" type="video/mp4">
             </video>
         </div>
 
@@ -64,7 +73,11 @@
                 <div class="hero-actions" id="heroActions">
                     <a href="https://play.google.com/store/apps/details?id=com.oinzpay.ng" target="_blank"
                         rel="noopener noreferrer" class="btn btn-white">Download App</a>
-                    <a href="login.html" class="btn btn-signin sign-in-btn" id="heroSignInBtn">Sign In</a>
+                    {% if user %}
+                    <a href="/logout" class="btn btn-signin sign-in-btn" id="heroSignInBtn">Sign Out</a>
+                    {% else %}
+                    <a href="/login.html" class="btn btn-signin sign-in-btn" id="heroSignInBtn">Sign In</a>
+                    {% endif %}
                 </div>
             </div>
 
@@ -89,7 +102,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <img src="assets/screen1.png" alt="OinzPay App Screen">
+                            <img src="/static/assets/screen1.png" alt="OinzPay App Screen">
                         </div>
                     </div>
                     <!-- QR Code Overlay -->
@@ -106,7 +119,7 @@
     <!-- ═════════════════════════════════
        SECTION 2 — APP PREVIEW
        ═════════════════════════════════ -->
-    <section class="preview" id="preview">
+    <section class="preview fade-in" id="preview">
         <div class="container">
             <div class="section-top">
                 <h2>Built for Modern Property Transactions</h2>
@@ -136,7 +149,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <img src="assets/screen1.png" alt="Escrow Payments">
+                                <img src="/static/assets/screen1.png" alt="Escrow Payments">
                             </div>
                         </div>
                     </div>
@@ -166,7 +179,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <img src="assets/Screen2.png" alt="Transaction Tracking">
+                                <img src="/static/assets/Screen2.png" alt="Transaction Tracking">
                             </div>
                         </div>
                     </div>
@@ -196,7 +209,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <img src="assets/screen3.png" alt="Milestone Releases">
+                                <img src="/static/assets/screen3.png" alt="Milestone Releases">
                             </div>
                         </div>
                     </div>
@@ -285,7 +298,7 @@
        ═════════════════════════════════ -->
     <section class="final-cta" id="cta">
         <div class="container">
-            <img src="assets/image.png" alt="OinzPay Logo" class="cta-logo">
+            <img src="/static/assets/image.png" alt="OinzPay Logo" class="cta-logo">
             <h2>Experience a Smarter Way to Transact Property.</h2>
             <a href="https://play.google.com/store/apps/details?id=com.oinzpay.ng" target="_blank"
                 class="btn btn-white-solid">Download OinzPay</a>
@@ -295,7 +308,7 @@
     <!-- ═════════════════════════════════
        SECTION 6 — HOW IT WORKS
        ═════════════════════════════════ -->
-    <section class="how-it-works">
+    <section class="how-it-works" id="overview">
         <div class="container">
             <h2>How OinzPay Works</h2>
             <div class="steps">
@@ -501,44 +514,55 @@
                             </svg>
                         </a>
                     </div>
-                    <a href="oinz.html" class="btn-explore">Explore Oinz Homes &rarr;</a>
+                    <a href="https://Oinzhomesandproperties.com" target="_blank" class="btn-explore">Visit Oinz Homes
+                        &rarr;</a>
                 </div>
 
                 <div class="footer-col">
                     <h5>Navigator</h5>
-                    <a href="#hero">Home</a>
-                    <a href="#preview">Features</a>
-                    <a href="#trust">Security</a>
-                    <a href="oinz.html">Oinz Homes</a>
+                    <a href="/#hero">Home</a>
+                    <a href="/#preview">Features</a>
+                    <a href="/#trust">Security</a>
+                    <a href="/oinz.html">Oinz Homes</a>
                 </div>
 
                 <div class="footer-col">
                     <h5>Legal</h5>
-                    <a href="privacy.html">Privacy Policy</a>
-                    <a href="terms.html">Terms of Service</a>
-                    <a href="contact.html">Contact Us</a>
+                    <a href="/privacy.html">Privacy Policy</a>
+                    <a href="/terms.html">Terms of Service</a>
+                    <a href="/contact.html">Contact Us</a>
                 </div>
             </div>
             <div class="footer-bottom">
-                &copy; 2026 OinzPay. Powered by <a href="oinz.html" style="text-decoration: underline;">Oinz Homes</a>.
+                &copy; 2026 OinzPay. Powered by <a href="/oinz.html" style="text-decoration: underline;">Oinz
+                    Homes</a>.
                 All rights reserved.
             </div>
         </div>
     </footer>
 
-    <script src="js/api.js"></script>
-    <script src="js/main.js"></script>
+    <script src="/static/js/api.js"></script>
+    <script src="/static/js/main.js"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const isAuthenticated = sessionStorage.getItem("isAuthenticated");
-            const signInButtons = document.querySelectorAll(".sign-in-btn");
-
-            if (isAuthenticated === "true") {
-                signInButtons.forEach(btn => {
-                    btn.textContent = "Contact Us";
-                    btn.href = "contact.html";
+        document.addEventListener("DOMContentLoaded", function () {
+            // FADE-IN ON PAGE LOAD
+            setTimeout(() => {
+                document.querySelectorAll(".fade-in").forEach(el => {
+                    el.classList.add("visible");
                 });
-            }
+            }, 100);
+
+            // NAVBAR SCROLL SHADOW
+            window.addEventListener("scroll", function () {
+                const nav = document.querySelector("nav");
+                if (!nav) return;
+
+                if (window.scrollY > 10) {
+                    nav.style.boxShadow = "0 4px 12px rgba(0,0,0,0.05)";
+                } else {
+                    nav.style.boxShadow = "none";
+                }
+            });
         });
     </script>
 </body>

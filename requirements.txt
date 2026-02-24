@@ -3,3 +3,6 @@ uvicorn
 passlib[bcrypt]
 pydantic[email]
 python-dotenv
+itsdangerous
+jinja2
+python-multipart

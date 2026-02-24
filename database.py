@@ -22,7 +22,21 @@ def init_db():
         CREATE TABLE IF NOT EXISTS users (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             email TEXT UNIQUE NOT NULL,
-            password_hash TEXT NOT NULL
+            full_name TEXT,
+            password_hash TEXT NOT NULL,
+            role TEXT DEFAULT 'user'
+        )
+    """)
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS contact_messages (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            ticket_id TEXT UNIQUE NOT NULL,
+            full_name TEXT,
+            email TEXT,
+            subject TEXT,
+            message TEXT,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            status TEXT DEFAULT 'OPEN'
         )
     """)
     conn.commit()
